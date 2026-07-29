@@ -46,7 +46,10 @@ const deleteHandle = async () => {
       <div class="delete-box">
         <div
           class="delete-icon"
-          v-if="postShowStore.post.userId === authStore.userInfo.id"
+          v-if="
+            authStore.userInfo?.role === 'SUPER' &&
+            postShowStore.post.userId === authStore.userInfo.id
+          "
           @click="deleteHandle"
         ></div>
       </div>

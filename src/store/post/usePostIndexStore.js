@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import myAxios from "../../api/myAxios";
 import { useMyErrorStore } from "../error/useMyErrorStore";
 
-export const usePostIndexStore = defineStore('postIndex', () => {
+export const usePostIndexStore = defineStore("postIndex", () => {
   // 1. State (ref)
   const items = ref([]);
   const isLastPage = ref(false);
@@ -17,30 +17,30 @@ export const usePostIndexStore = defineStore('postIndex', () => {
     items.value = [];
     isLastPage.value = false;
     currentPage.value = 0;
-  }
+  };
 
   const getPostPagination = async (page = 1) => {
     // 마지막 페이지가 아닐 경우만 실행
-    if(!isLastPage.value) {
+    if (!isLastPage.value) {
       try {
-        const url = '/api/posts';
+        const url = "/api/posts";
         const params = {
           page,
         };
-  
+
         const res = await myAxios.get(url, { params });
         const data = res.data.data;
-        isLastPage.value = data.lastPage;
+        isLastPage.value = data.isLastPage;
         items.value.push(...data.posts);
-  
+
         currentPage.value++;
-      } catch(error) {
+      } catch (error) {
         console.error(error);
         throw error;
       }
     }
-  }
-  
+  };
+
   return {
     // state
     items,
@@ -52,5 +52,5 @@ export const usePostIndexStore = defineStore('postIndex', () => {
     // actions
     clearPostIndex,
     getPostPagination,
-  }
+  };
 });
