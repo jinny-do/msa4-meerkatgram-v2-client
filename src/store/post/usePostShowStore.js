@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import myAxios from "../../api/myAxios";
 
-export const usePostShowStore = defineStore('postShowStore', () => {
+export const usePostShowStore = defineStore("postShowStore", () => {
   // 1. State
   const post = ref(null);
 
@@ -18,15 +18,25 @@ export const usePostShowStore = defineStore('postShowStore', () => {
     } catch (error) {
       throw error;
     }
-  }
+  };
+
+  const deletePost = async (id) => {
+    try {
+      const url = `/api/posts/${id}`;
+      await myAxios.delete(url);
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const clearPostShow = () => {
     post.value = null;
-  }
+  };
 
   return {
     post,
     getPost,
+    deletePost,
     clearPostShow,
-  }
+  };
 });

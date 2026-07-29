@@ -2,13 +2,21 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import myAxios from "../../api/myAxios";
 
-export const usePostStatisticsStore = defineStore('postStatisticsStore', () => {
+export const usePostStatisticsStore = defineStore("postStatisticsStore", () => {
   // 1. State
   const postCount = ref(0);
 
   // 2. Getters
 
   // 3. Actions
+  const decrementPostCount = () => {
+    postCount.value--;
+  };
+
+  const incrementPostCount = () => {
+    postCount.value++;
+  };
+
   const getUserPostCount = async () => {
     try {
       const url = `/api/posts/statistics/user-post-count`;
@@ -17,9 +25,9 @@ export const usePostStatisticsStore = defineStore('postStatisticsStore', () => {
       postCount.value = response.data.data.postCount;
     } catch (error) {
       console.error(error);
-      postCount.value = '-';
+      postCount.value = "-";
     }
-  }
+  };
 
   return {
     // States
@@ -29,5 +37,7 @@ export const usePostStatisticsStore = defineStore('postStatisticsStore', () => {
 
     // Actions
     getUserPostCount,
-  }
+    decrementPostCount,
+    incrementPostCount,
+  };
 });
