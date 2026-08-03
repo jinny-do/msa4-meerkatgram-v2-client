@@ -1,21 +1,28 @@
 <script setup>
 const props = defineProps({
-  'btnType': {
+  btnType: {
+    type: String, // 'button', 'submit', 'reset'
+    default: "button",
+  },
+  btnSize: {
+    type: String, // 'big', 'middle', 'small'
+    default: "big",
+  },
+  btnStyle: {
+    type: String, // `black`, `gray`, `white`, `kakao`, `google`, `naver`
+    default: "",
+  },
+  btnContent: {
     type: String,
-    default: 'button'
-  }, // 'button', 'submit', 'reset'
-  'size': String, // 'big', 'middle', 'small'
-  'color': String, // 'black', 'white', 'gray'
-  'content': String,
+    default: "",
+  },
 });
-
 </script>
 
 <template>
-  <button
-    :type="props.btnType"
-    :class="[props.color, props.size]"
-  >{{ props.content }}</button>
+  <button :type="props.btnType" :class="[props.btnStyle, props.btnSize]">
+    {{ props.btnContent }}
+  </button>
 </template>
 
 <style scoped>
@@ -26,6 +33,9 @@ button {
   align-items: center;
   border: none;
   cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .big {
@@ -59,5 +69,9 @@ button {
 .white {
   background-color: var(--personal-color-white);
   color: var(--personal-color-black);
+}
+
+.kakao {
+  background-image: url("/icons/kakao_login_large_narrow.png");
 }
 </style>

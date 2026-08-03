@@ -1,28 +1,28 @@
 <script setup>
-import { ref } from 'vue';
-import MyButton from './button/MyButton.vue';
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '../store/auth/useAuthStore.js';
+import { ref } from "vue";
+import MyButton from "./button/MyButton.vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "../store/auth/useAuthStore.js";
 
 const router = useRouter();
 const authStore = useAuthStore();
 
 const redirectMain = () => {
-  router.push('/');
-}
+  router.push("/");
+};
 
 const redirectLogin = () => {
-  router.push('/login');
-}
+  router.push("/login");
+};
 
 const redirectRegistration = () => {
-  router.push('/registration');
-}
+  router.push("/registration");
+};
 
 const logout = async () => {
   await authStore.logout();
-  router.replace('/');
-}
+  router.replace("/");
+};
 </script>
 
 <template>
@@ -34,27 +34,27 @@ const logout = async () => {
       <MyButton
         v-if="!authStore.isLoggedIn"
         @click="redirectLogin()"
-        :content="'Sign In'"
-        :color="'gray'"
-        :size="'small'"
+        :btnContent="'Sign In'"
+        :btnStyle="'gray'"
+        :btnSize="'small'"
       />
       <MyButton
         v-if="!authStore.isLoggedIn"
         @click="redirectRegistration()"
-        :content="'Sign Up'"
-        :color="'white'"
-        :size="'small'"
+        :btnContent="'Sign Up'"
+        :btnStyle="'white'"
+        :btnSize="'small'"
       />
       <MyButton
         v-if="authStore.isLoggedIn"
-        :content="'Logout'"
-        :color="'black'"
-        :size="'small'"
+        :btnContent="'Logout'"
+        :btnStyle="'black'"
+        :btnSize="'small'"
         @click="logout()"
       />
     </div>
   </div>
-  <hr>
+  <hr />
 </template>
 
 <style scoped>

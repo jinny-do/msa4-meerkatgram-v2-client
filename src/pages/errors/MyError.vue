@@ -1,7 +1,7 @@
 <script setup>
-import { useRouter } from 'vue-router';
-import MyButton from '../../components/button/MyButton.vue';
-import { useMyErrorStore } from '../../store/error/useMyErrorStore';
+import { useRouter } from "vue-router";
+import MyButton from "../../components/button/MyButton.vue";
+import { useMyErrorStore } from "../../store/error/useMyErrorStore";
 
 const router = useRouter();
 const myErrorStore = useMyErrorStore();
@@ -9,8 +9,8 @@ const myErrorStore = useMyErrorStore();
 const redirectMain = () => {
   myErrorStore.clearErrorInfo();
   // URL을 히스토리 스택에 추가하지 않고 이동
-  router.replace('/');
-}
+  router.replace("/");
+};
 </script>
 
 <template>
@@ -20,13 +20,11 @@ const redirectMain = () => {
   <h2>아래 버튼을 누르시면 메인 페이지로 이동합니다.</h2>
 
   <MyButton
-    :size="'middle'"
-    :color="'gray'"
-    :content="'Go to Main'"
+    :btnSize="'middle'"
+    :btnStyle="'gray'"
+    :btnContent="'Go to Main'"
     @click="redirectMain()"
   ></MyButton>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
