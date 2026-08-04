@@ -5,8 +5,8 @@ name: Client Build And Deploy
 on:
     # push 이벤트가 발생하면 트리거
     push:
-        # 그 중에서 master 브런치만 push 되었을 때 (다른 브런치에 push는 무시). 코드가 최종적으로 배포될 브런치
-        branches: [master]
+        # 그 중에서 main 브런치만 push 되었을 때 (다른 브런치에 push는 무시). 코드가 최종적으로 배포될 브런치
+        branches: [main]
 
 env:
     # ghcr.io에 올릴 이미지명 설정
